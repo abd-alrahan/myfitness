@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myfitness/components/components.dart';
+import 'package:myfitness/search/search.dart';
 import 'package:myfitness/tipsCategory/eating/eatingController.dart';
 
 class Eating extends StatelessWidget {
@@ -34,7 +35,22 @@ class Eating extends StatelessWidget {
               list: [
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
-                  child: MyText(text: 'Eating Tips:', fontsize: 35),
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Get.to(MySearchAAA());
+                        },
+                        icon: Icon(
+                          Icons.search,
+                          color: Colors.black,
+                          size: 30,
+                        ),
+                      ),
+                      MyText(text: 'Eating Tips:', fontsize: 35),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 15),
                 Expanded(

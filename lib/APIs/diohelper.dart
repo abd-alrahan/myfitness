@@ -5,7 +5,7 @@ class DioHelper {
 
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: 'http://192.168.43.157:8000/api/',
+      baseUrl: 'http://192.168.1.4:8000/api/',
       receiveDataWhenStatusError: true,
     ));
   }
@@ -51,16 +51,34 @@ class DioHelper {
             }));
   }
 
-    static Future<Response> userLogOut(
-      {required String token}) async {
+  static Future<Response> userLogOut({required String token}) async {
     return await dio.post('user/logout',
         options: Options(
-            headers: {'Accept': 'application/json', 'Authorization' : 'Bearer $token'},
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
             followRedirects: false,
             validateStatus: (status) {
               return true;
             }));
   }
+
+  static Future<Response> postSearch({required String description}) async {
+    return await dio.post('searchrecipe',
+        queryParameters: {'description': description},
+        options: Options(
+            headers: {'Accept': 'application/json'},
+            followRedirects: false,
+            validateStatus: (status) {
+              return true;
+            }));
+  }
+
+  // static Future<List<TipsModel>> postSearch1() {
+  //   Future<Response> abd = postSearch(description: " ");
+  //   List<TipsModel> a = TipsModel.fromJson(abd as Map<String, dynamic>);
+  // }
 
   static Future<Response> showtips(int categoryId) async {
     return await dio.get(

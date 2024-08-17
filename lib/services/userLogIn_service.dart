@@ -20,7 +20,7 @@ class UserLogInService {
     print(response.data);
     var response1 = response.data['data'];
 
-    putUser(userToken: response1['token']);
+    putUser(userToken: response1!['token']);
     print(response1['token']);
 
     return response1['name'] != null;
